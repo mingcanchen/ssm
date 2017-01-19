@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ming.ssm.persist.dao.CustomerMapper" >
+    <resultMap id="CustomerPO" type="com.ming.ssm.model.CustomerPO" >
+        <id column="sn" property="sn" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        sn, cust_type, customer_id, customer_pwd, customer_name, email, phone, mobile, audit_status,
+        activation, status, pay_type, charge_type, finance_id, insert_time, update_time
+    </sql>
+    <select id="getCustomerById" resultMap="CustomerPO" >
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM customer_info
+        WHERE sn = #{id}
+    </select>
+
+</mapper>

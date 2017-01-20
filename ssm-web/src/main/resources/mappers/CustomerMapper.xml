@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ming.ssm.persist.dao.CustomerMapper" >
-    <resultMap id="CustomerPO" type="com.ming.ssm.model.CustomerPO" >
+    <resultMap id="CustomerPO" type="CustomerPO" >
         <id column="sn" property="sn" />
     </resultMap>
     <sql id="Base_Column_List" >
@@ -12,7 +12,49 @@
         SELECT
         <include refid="Base_Column_List"/>
         FROM customer_info
-        WHERE sn = #{id}
+        WHERE customer_id = #{id}
     </select>
 
+    <select id="getCustomerList" parameterType="CustomerVO" resultMap="CustomerPO">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM customer_info
+        <where>
+            <if test="customerId != null and customerId != ''" >
+              AND customer_id = #{customerId}
+            </if>
+            <if test="customerName != null and customerName != ''">
+                AND customer_name = #{customerName}
+            </if>
+
+            <if test="email != null and email != ''">
+                AND email = #{email}
+            </if>
+
+            <if test="phone != null and phone != ''">
+                AND phone = #{phone}
+            </if>
+
+            <if test="mobile != null and mobile != ''">
+                AND mobile = #{mobile}
+            </if>
+
+            <if test="auditStatus != null and auditStatus != ''">
+                AND audit_status = #{auditStatus}
+            </if>
+
+            <if test="activation != null and activation != ''">
+                AND phone = #{phone}
+            </if>
+
+            <if test="status != null and status != ''">
+                AND status = #{status}
+            </if>
+
+            <if test="payType != null and payType != ''">
+                AND pay_type = #{payType}
+            </if>
+        </where>
+
+    </select>
 </mapper>

@@ -3,8 +3,11 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
+    <!--开启驼峰命名-->
     <settings>
         <setting name="mapUnderscoreToCamelCase" value="true" />
+        <!--<setting name="logImpl" value="STDOUT_LOGGING"/>-->
+        <setting name="logImpl" value="LOG4J"/>
     </settings>
 
     <plugins>  
@@ -55,11 +58,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		    &lt;!&ndash;通用Mapper接口，多个通用接口用逗号隔开&ndash;&gt;
 		    <property name="mappers" value="com.ming.interceptor.BaseMapper"/>
 		</plugin>-->
+
     </plugins>
-    <!--开启驼峰命名-->
 
-    <!--<mappers>-->
-        <!--<mapper resource="mappers/CustomerMapper.xml"/>-->
-
-    <!--</mappers>-->
 </configuration> 

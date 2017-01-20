@@ -13,4 +13,6 @@ public interface ICustomerService {
     CustomerPO getCustomerById(String id);
 
     List<CustomerPO> getCustomerList(CustomerVO customerVO);
+
+    int addCustomer(CustomerPO customerPO);
 }

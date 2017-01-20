@@ -17,4 +17,6 @@ public interface CustomerMapper {
 
     List<CustomerPO> getCustomerList( CustomerVO customerVO);
 
+    int addCustomer(CustomerPO customerPO);
+
 }

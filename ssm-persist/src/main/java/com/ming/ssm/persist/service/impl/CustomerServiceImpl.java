@@ -18,6 +18,7 @@ public class CustomerServiceImpl implements ICustomerService {
     @Resource
     private CustomerMapper customerMapper;
 
+    @Override
     public CustomerPO getCustomerById(String id) {
         return customerMapper.getCustomerById(id);
     }
@@ -26,5 +27,12 @@ public class CustomerServiceImpl implements ICustomerService {
     public List<CustomerPO> getCustomerList(CustomerVO customerVO) {
         return customerMapper.getCustomerList(customerVO);
     }
+
+    @Override
+    public int addCustomer(CustomerPO customerPO) {
+
+        return customerMapper.addCustomer(customerPO);
+    }
+
 
 }

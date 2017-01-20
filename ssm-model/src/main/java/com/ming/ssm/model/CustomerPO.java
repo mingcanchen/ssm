@@ -7,18 +7,18 @@ import java.util.Date;
  */
 public class CustomerPO {
     private int sn; // '主键自增',
-    private String custType;// '非空，用户类型默认为0，0:个人用户1：企业用户',
+    private int custType;// '非空，用户类型默认为0，0:个人用户1：企业用户',
     private String customerId; // '非空，账号id唯一',
     private String customerPwd; //'非空，客户密码',
     private String customerName; //'账号名',
     private String email; // '注册邮箱，非空',
     private String phone; // '手机号',
     private String mobile; //座机',
-    private String auditStatus; //'0' COMMENT '非空，默认为0，审核状态0：待审核（否）1：通过（是）2：不通过（否）',
-    private String activation; //'0' COMMENT '非空，默认为0，激活状态，0：未激活 1：已激活',
-    private String status;//'0' COMMENT '非空，默认为0，状态 0正常、1异常',
-    private String payType;//'0' COMMENT '付费类型 0:预付费，1:后付费',
-    private String chargeType; // '0' COMMENT '计费类型 0:提交计费，1:成功计费',
+    private int auditStatus; //'0' COMMENT '非空，默认为0，审核状态0：待审核（否）1：通过（是）2：不通过（否）',
+    private int activation; //'0' COMMENT '非空，默认为0，激活状态，0：未激活 1：已激活',
+    private int status;//'0' COMMENT '非空，默认为0，状态 0正常、1异常',
+    private int payType;//'0' COMMENT '付费类型 0:预付费，1:后付费',
+    private int chargeType; // '0' COMMENT '计费类型 0:提交计费，1:成功计费',
     private String financeId; //'财务id',
     private String insertTime;// '创建时间',
     private Date updateTime; // '修改时间',
@@ -31,11 +31,11 @@ public class CustomerPO {
         this.sn = sn;
     }
 
-    public String getCustType() {
+    public int getCustType() {
         return custType;
     }
 
-    public void setCustType(String custType) {
+    public void setCustType(int custType) {
         this.custType = custType;
     }
 
@@ -87,43 +87,43 @@ public class CustomerPO {
         this.mobile = mobile;
     }
 
-    public String getAuditStatus() {
+    public int getAuditStatus() {
         return auditStatus;
     }
 
-    public void setAuditStatus(String auditStatus) {
+    public void setAuditStatus(int auditStatus) {
         this.auditStatus = auditStatus;
     }
 
-    public String getActivation() {
+    public int getActivation() {
         return activation;
     }
 
-    public void setActivation(String activation) {
+    public void setActivation(int activation) {
         this.activation = activation;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
-    public String getPayType() {
+    public int getPayType() {
         return payType;
     }
 
-    public void setPayType(String payType) {
+    public void setPayType(int payType) {
         this.payType = payType;
     }
 
-    public String getChargeType() {
+    public int getChargeType() {
         return chargeType;
     }
 
-    public void setChargeType(String chargeType) {
+    public void setChargeType(int chargeType) {
         this.chargeType = chargeType;
     }
 

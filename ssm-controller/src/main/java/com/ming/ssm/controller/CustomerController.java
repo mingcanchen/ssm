@@ -72,4 +72,11 @@ public class CustomerController {
         LOGGER.info(sn+"");
         return "customer/customerInfo";
     }
+
+    @RequestMapping(value = "/detial",method = RequestMethod.GET)
+    public String getCustomerDetail(String customerId){
+        CustomerPO customerPO = customerServiceImpl.getCustomerDetail(customerId);
+        LOGGER.info("测试用户详情:"+JSON.toJSONString(customerPO));
+        return "" ;
+    }
 }

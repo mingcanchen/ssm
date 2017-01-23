@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ming.ssm.persist.dao.ApiRequestRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.ming.ssm.model.ApiRequestRecordPO" >
+    <id column="sn" property="sn" jdbcType="BIGINT" />
+    <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    <result column="customer_yw_id" property="customerYwId" jdbcType="VARCHAR" />
+    <result column="system_yw_id" property="systemYwId" jdbcType="VARCHAR" />
+    <result column="request_key" property="requestKey" jdbcType="VARCHAR" />
+    <result column="charge_price" property="chargePrice" jdbcType="DECIMAL" />
+    <result column="receive_time" property="receiveTime" jdbcType="VARCHAR" />
+    <result column="cache_request_time" property="cacheRequestTime" jdbcType="VARCHAR" />
+    <result column="data_from" property="dataFrom" jdbcType="VARCHAR" />
+    <result column="api_id" property="apiId" jdbcType="VARCHAR" />
+    <result column="api_request_time" property="apiRequestTime" jdbcType="VARCHAR" />
+    <result column="api_response_time" property="apiResponseTime" jdbcType="VARCHAR" />
+    <result column="done_time" property="doneTime" jdbcType="VARCHAR" />
+    <result column="result" property="result" jdbcType="INTEGER" />
+    <result column="api_code" property="apiCode" jdbcType="VARCHAR" />
+    <result column="insert_time" property="insertTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.ming.ssm.model.ApiRequestRecordPOWithBLOBs" extends="BaseResultMap" >
+    <result column="request_data" property="requestData" jdbcType="LONGVARCHAR" />
+    <result column="api_data" property="apiData" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sn, customer_id, customer_yw_id, system_yw_id, request_key, charge_price, receive_time, 
+    cache_request_time, data_from, api_id, api_request_time, api_response_time, done_time, 
+    result, api_code, insert_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    request_data, api_data
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from api_request_record
+    where sn = #{sn,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from api_request_record
+    where sn = #{sn,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ming.ssm.model.ApiRequestRecordPOWithBLOBs" >
+    insert into api_request_record (sn, customer_id, customer_yw_id, 
+      system_yw_id, request_key, charge_price, 
+      receive_time, cache_request_time, data_from, 
+      api_id, api_request_time, api_response_time, 
+      done_time, result, api_code, 
+      insert_time, request_data, api_data
+      )
+    values (#{sn,jdbcType=BIGINT}, #{customerId,jdbcType=VARCHAR}, #{customerYwId,jdbcType=VARCHAR}, 
+      #{systemYwId,jdbcType=VARCHAR}, #{requestKey,jdbcType=VARCHAR}, #{chargePrice,jdbcType=DECIMAL}, 
+      #{receiveTime,jdbcType=VARCHAR}, #{cacheRequestTime,jdbcType=VARCHAR}, #{dataFrom,jdbcType=VARCHAR}, 
+      #{apiId,jdbcType=VARCHAR}, #{apiRequestTime,jdbcType=VARCHAR}, #{apiResponseTime,jdbcType=VARCHAR}, 
+      #{doneTime,jdbcType=VARCHAR}, #{result,jdbcType=INTEGER}, #{apiCode,jdbcType=VARCHAR}, 
+      #{insertTime,jdbcType=TIMESTAMP}, #{requestData,jdbcType=LONGVARCHAR}, #{apiData,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ming.ssm.model.ApiRequestRecordPOWithBLOBs" >
+    insert into api_request_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sn != null" >
+        sn,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="customerYwId != null" >
+        customer_yw_id,
+      </if>
+      <if test="systemYwId != null" >
+        system_yw_id,
+      </if>
+      <if test="requestKey != null" >
+        request_key,
+      </if>
+      <if test="chargePrice != null" >
+        charge_price,
+      </if>
+      <if test="receiveTime != null" >
+        receive_time,
+      </if>
+      <if test="cacheRequestTime != null" >
+        cache_request_time,
+      </if>
+      <if test="dataFrom != null" >
+        data_from,
+      </if>
+      <if test="apiId != null" >
+        api_id,
+      </if>
+      <if test="apiRequestTime != null" >
+        api_request_time,
+      </if>
+      <if test="apiResponseTime != null" >
+        api_response_time,
+      </if>
+      <if test="doneTime != null" >
+        done_time,
+      </if>
+      <if test="result != null" >
+        result,
+      </if>
+      <if test="apiCode != null" >
+        api_code,
+      </if>
+      <if test="insertTime != null" >
+        insert_time,
+      </if>
+      <if test="requestData != null" >
+        request_data,
+      </if>
+      <if test="apiData != null" >
+        api_data,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sn != null" >
+        #{sn,jdbcType=BIGINT},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerYwId != null" >
+        #{customerYwId,jdbcType=VARCHAR},
+      </if>
+      <if test="systemYwId != null" >
+        #{systemYwId,jdbcType=VARCHAR},
+      </if>
+      <if test="requestKey != null" >
+        #{requestKey,jdbcType=VARCHAR},
+      </if>
+      <if test="chargePrice != null" >
+        #{chargePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="receiveTime != null" >
+        #{receiveTime,jdbcType=VARCHAR},
+      </if>
+      <if test="cacheRequestTime != null" >
+        #{cacheRequestTime,jdbcType=VARCHAR},
+      </if>
+      <if test="dataFrom != null" >
+        #{dataFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="apiId != null" >
+        #{apiId,jdbcType=VARCHAR},
+      </if>
+      <if test="apiRequestTime != null" >
+        #{apiRequestTime,jdbcType=VARCHAR},
+      </if>
+      <if test="apiResponseTime != null" >
+        #{apiResponseTime,jdbcType=VARCHAR},
+      </if>
+      <if test="doneTime != null" >
+        #{doneTime,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=INTEGER},
+      </if>
+      <if test="apiCode != null" >
+        #{apiCode,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null" >
+        #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="requestData != null" >
+        #{requestData,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="apiData != null" >
+        #{apiData,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ming.ssm.model.ApiRequestRecordPOWithBLOBs" >
+    update api_request_record
+    <set >
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerYwId != null" >
+        customer_yw_id = #{customerYwId,jdbcType=VARCHAR},
+      </if>
+      <if test="systemYwId != null" >
+        system_yw_id = #{systemYwId,jdbcType=VARCHAR},
+      </if>
+      <if test="requestKey != null" >
+        request_key = #{requestKey,jdbcType=VARCHAR},
+      </if>
+      <if test="chargePrice != null" >
+        charge_price = #{chargePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="receiveTime != null" >
+        receive_time = #{receiveTime,jdbcType=VARCHAR},
+      </if>
+      <if test="cacheRequestTime != null" >
+        cache_request_time = #{cacheRequestTime,jdbcType=VARCHAR},
+      </if>
+      <if test="dataFrom != null" >
+        data_from = #{dataFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="apiId != null" >
+        api_id = #{apiId,jdbcType=VARCHAR},
+      </if>
+      <if test="apiRequestTime != null" >
+        api_request_time = #{apiRequestTime,jdbcType=VARCHAR},
+      </if>
+      <if test="apiResponseTime != null" >
+        api_response_time = #{apiResponseTime,jdbcType=VARCHAR},
+      </if>
+      <if test="doneTime != null" >
+        done_time = #{doneTime,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        result = #{result,jdbcType=INTEGER},
+      </if>
+      <if test="apiCode != null" >
+        api_code = #{apiCode,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null" >
+        insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="requestData != null" >
+        request_data = #{requestData,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="apiData != null" >
+        api_data = #{apiData,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where sn = #{sn,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ming.ssm.model.ApiRequestRecordPOWithBLOBs" >
+    update api_request_record
+    set customer_id = #{customerId,jdbcType=VARCHAR},
+      customer_yw_id = #{customerYwId,jdbcType=VARCHAR},
+      system_yw_id = #{systemYwId,jdbcType=VARCHAR},
+      request_key = #{requestKey,jdbcType=VARCHAR},
+      charge_price = #{chargePrice,jdbcType=DECIMAL},
+      receive_time = #{receiveTime,jdbcType=VARCHAR},
+      cache_request_time = #{cacheRequestTime,jdbcType=VARCHAR},
+      data_from = #{dataFrom,jdbcType=VARCHAR},
+      api_id = #{apiId,jdbcType=VARCHAR},
+      api_request_time = #{apiRequestTime,jdbcType=VARCHAR},
+      api_response_time = #{apiResponseTime,jdbcType=VARCHAR},
+      done_time = #{doneTime,jdbcType=VARCHAR},
+      result = #{result,jdbcType=INTEGER},
+      api_code = #{apiCode,jdbcType=VARCHAR},
+      insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      request_data = #{requestData,jdbcType=LONGVARCHAR},
+      api_data = #{apiData,jdbcType=LONGVARCHAR}
+    where sn = #{sn,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ming.ssm.model.ApiRequestRecordPO" >
+    update api_request_record
+    set customer_id = #{customerId,jdbcType=VARCHAR},
+      customer_yw_id = #{customerYwId,jdbcType=VARCHAR},
+      system_yw_id = #{systemYwId,jdbcType=VARCHAR},
+      request_key = #{requestKey,jdbcType=VARCHAR},
+      charge_price = #{chargePrice,jdbcType=DECIMAL},
+      receive_time = #{receiveTime,jdbcType=VARCHAR},
+      cache_request_time = #{cacheRequestTime,jdbcType=VARCHAR},
+      data_from = #{dataFrom,jdbcType=VARCHAR},
+      api_id = #{apiId,jdbcType=VARCHAR},
+      api_request_time = #{apiRequestTime,jdbcType=VARCHAR},
+      api_response_time = #{apiResponseTime,jdbcType=VARCHAR},
+      done_time = #{doneTime,jdbcType=VARCHAR},
+      result = #{result,jdbcType=INTEGER},
+      api_code = #{apiCode,jdbcType=VARCHAR},
+      insert_time = #{insertTime,jdbcType=TIMESTAMP}
+    where sn = #{sn,jdbcType=BIGINT}
+  </update>
+</mapper>

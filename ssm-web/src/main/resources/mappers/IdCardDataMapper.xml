@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ming.ssm.persist.dao.IdCardDataMapper" >
+  <resultMap id="BaseResultMap" type="com.ming.ssm.model.IdCardDataPO" >
+    <id column="sn" property="sn" jdbcType="BIGINT" />
+    <result column="idcard" property="idcard" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="insert_time" property="insertTime" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="key_ele_authz" property="keyEleAuthz" jdbcType="VARCHAR" />
+    <result column="result" property="result" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sn, idcard, name, insert_time, update_time, key_ele_authz, result
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from id_card_data
+    where sn = #{sn,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from id_card_data
+    where sn = #{sn,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ming.ssm.model.IdCardDataPO" >
+    insert into id_card_data (sn, idcard, name, 
+      insert_time, update_time, key_ele_authz, 
+      result)
+    values (#{sn,jdbcType=BIGINT}, #{idcard,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{insertTime,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{keyEleAuthz,jdbcType=VARCHAR}, 
+      #{result,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ming.ssm.model.IdCardDataPO" >
+    insert into id_card_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sn != null" >
+        sn,
+      </if>
+      <if test="idcard != null" >
+        idcard,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="insertTime != null" >
+        insert_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="keyEleAuthz != null" >
+        key_ele_authz,
+      </if>
+      <if test="result != null" >
+        result,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sn != null" >
+        #{sn,jdbcType=BIGINT},
+      </if>
+      <if test="idcard != null" >
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null" >
+        #{insertTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="keyEleAuthz != null" >
+        #{keyEleAuthz,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ming.ssm.model.IdCardDataPO" >
+    update id_card_data
+    <set >
+      <if test="idcard != null" >
+        idcard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null" >
+        insert_time = #{insertTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="keyEleAuthz != null" >
+        key_ele_authz = #{keyEleAuthz,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        result = #{result,jdbcType=INTEGER},
+      </if>
+    </set>
+    where sn = #{sn,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ming.ssm.model.IdCardDataPO" >
+    update id_card_data
+    set idcard = #{idcard,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      insert_time = #{insertTime,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      key_ele_authz = #{keyEleAuthz,jdbcType=VARCHAR},
+      result = #{result,jdbcType=INTEGER}
+    where sn = #{sn,jdbcType=BIGINT}
+  </update>
+</mapper>

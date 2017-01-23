@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ming.ssm.persist.dao.CustomerBalanceInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.ming.ssm.model.CustomerBalanceInfoPO" >
+    <id column="sn" property="sn" jdbcType="BIGINT" />
+    <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    <result column="balance" property="balance" jdbcType="DECIMAL" />
+    <result column="insert_time" property="insertTime" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sn, customer_id, balance, insert_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from customer_balance_info
+    where sn = #{sn,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from customer_balance_info
+    where sn = #{sn,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ming.ssm.model.CustomerBalanceInfoPO" >
+    insert into customer_balance_info (sn, customer_id, balance, 
+      insert_time, update_time)
+    values (#{sn,jdbcType=BIGINT}, #{customerId,jdbcType=VARCHAR}, #{balance,jdbcType=DECIMAL}, 
+      #{insertTime,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ming.ssm.model.CustomerBalanceInfoPO" >
+    insert into customer_balance_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sn != null" >
+        sn,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+      <if test="insertTime != null" >
+        insert_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sn != null" >
+        #{sn,jdbcType=BIGINT},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="insertTime != null" >
+        #{insertTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ming.ssm.model.CustomerBalanceInfoPO" >
+    update customer_balance_info
+    <set >
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="insertTime != null" >
+        insert_time = #{insertTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where sn = #{sn,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ming.ssm.model.CustomerBalanceInfoPO" >
+    update customer_balance_info
+    set customer_id = #{customerId,jdbcType=VARCHAR},
+      balance = #{balance,jdbcType=DECIMAL},
+      insert_time = #{insertTime,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where sn = #{sn,jdbcType=BIGINT}
+  </update>
+</mapper>

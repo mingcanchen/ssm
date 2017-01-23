@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ming.ssm.persist.dao.CustomerBalanceWarningMapper" >
+  <resultMap id="BaseResultMap" type="com.ming.ssm.model.CustomerBalanceWarningPO" >
+    <id column="sn" property="sn" jdbcType="BIGINT" />
+    <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    <result column="balance_warning" property="balanceWarning" jdbcType="DECIMAL" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="insert_time" property="insertTime" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sn, customer_id, balance_warning, phone, email, insert_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from customer_balance_warning
+    where sn = #{sn,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from customer_balance_warning
+    where sn = #{sn,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ming.ssm.model.CustomerBalanceWarningPO" >
+    insert into customer_balance_warning (sn, customer_id, balance_warning, 
+      phone, email, insert_time, 
+      update_time)
+    values (#{sn,jdbcType=BIGINT}, #{customerId,jdbcType=VARCHAR}, #{balanceWarning,jdbcType=DECIMAL}, 
+      #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{insertTime,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ming.ssm.model.CustomerBalanceWarningPO" >
+    insert into customer_balance_warning
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sn != null" >
+        sn,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="balanceWarning != null" >
+        balance_warning,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="insertTime != null" >
+        insert_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sn != null" >
+        #{sn,jdbcType=BIGINT},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="balanceWarning != null" >
+        #{balanceWarning,jdbcType=DECIMAL},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null" >
+        #{insertTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ming.ssm.model.CustomerBalanceWarningPO" >
+    update customer_balance_warning
+    <set >
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="balanceWarning != null" >
+        balance_warning = #{balanceWarning,jdbcType=DECIMAL},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null" >
+        insert_time = #{insertTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where sn = #{sn,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ming.ssm.model.CustomerBalanceWarningPO" >
+    update customer_balance_warning
+    set customer_id = #{customerId,jdbcType=VARCHAR},
+      balance_warning = #{balanceWarning,jdbcType=DECIMAL},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      insert_time = #{insertTime,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where sn = #{sn,jdbcType=BIGINT}
+  </update>
+</mapper>

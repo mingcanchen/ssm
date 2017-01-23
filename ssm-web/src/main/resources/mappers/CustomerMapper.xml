@@ -59,9 +59,6 @@
     </select>
 
     <insert id="addCustomer" parameterType="CustomerPO" useGeneratedKeys="true" keyProperty="sn">
-        <!--<selectKey resultType="int" order="AFTER" keyProperty="sn">-->
-            <!--SELECT LAST_INSERT_ID()-->
-        <!--</selectKey>-->
         INSERT INTO customer_info
         (cust_type, customer_id, customer_pwd, customer_name, email, phone, mobile, audit_status,
         activation, status, pay_type, charge_type, finance_id, insert_time, update_time)

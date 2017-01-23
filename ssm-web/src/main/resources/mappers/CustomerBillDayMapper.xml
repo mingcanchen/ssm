@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ming.ssm.persist.dao.CustomerBillDayMapper" >
+  <resultMap id="BaseResultMap" type="com.ming.ssm.model.CustomerBillDayPO" >
+    <id column="sn" property="sn" jdbcType="BIGINT" />
+    <result column="system_yw_id" property="systemYwId" jdbcType="VARCHAR" />
+    <result column="customer_yw_id" property="customerYwId" jdbcType="VARCHAR" />
+    <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    <result column="use_all_num" property="useAllNum" jdbcType="BIGINT" />
+    <result column="use_t_num" property="useTNum" jdbcType="BIGINT" />
+    <result column="use_f_num" property="useFNum" jdbcType="BIGINT" />
+    <result column="balance" property="balance" jdbcType="DECIMAL" />
+    <result column="in_date" property="inDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sn, system_yw_id, customer_yw_id, customer_id, use_all_num, use_t_num, use_f_num, 
+    balance, in_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from customer_bill_day
+    where sn = #{sn,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from customer_bill_day
+    where sn = #{sn,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ming.ssm.model.CustomerBillDayPO" >
+    insert into customer_bill_day (sn, system_yw_id, customer_yw_id, 
+      customer_id, use_all_num, use_t_num, 
+      use_f_num, balance, in_date
+      )
+    values (#{sn,jdbcType=BIGINT}, #{systemYwId,jdbcType=VARCHAR}, #{customerYwId,jdbcType=VARCHAR}, 
+      #{customerId,jdbcType=VARCHAR}, #{useAllNum,jdbcType=BIGINT}, #{useTNum,jdbcType=BIGINT}, 
+      #{useFNum,jdbcType=BIGINT}, #{balance,jdbcType=DECIMAL}, #{inDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ming.ssm.model.CustomerBillDayPO" >
+    insert into customer_bill_day
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sn != null" >
+        sn,
+      </if>
+      <if test="systemYwId != null" >
+        system_yw_id,
+      </if>
+      <if test="customerYwId != null" >
+        customer_yw_id,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="useAllNum != null" >
+        use_all_num,
+      </if>
+      <if test="useTNum != null" >
+        use_t_num,
+      </if>
+      <if test="useFNum != null" >
+        use_f_num,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+      <if test="inDate != null" >
+        in_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sn != null" >
+        #{sn,jdbcType=BIGINT},
+      </if>
+      <if test="systemYwId != null" >
+        #{systemYwId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerYwId != null" >
+        #{customerYwId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="useAllNum != null" >
+        #{useAllNum,jdbcType=BIGINT},
+      </if>
+      <if test="useTNum != null" >
+        #{useTNum,jdbcType=BIGINT},
+      </if>
+      <if test="useFNum != null" >
+        #{useFNum,jdbcType=BIGINT},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="inDate != null" >
+        #{inDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ming.ssm.model.CustomerBillDayPO" >
+    update customer_bill_day
+    <set >
+      <if test="systemYwId != null" >
+        system_yw_id = #{systemYwId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerYwId != null" >
+        customer_yw_id = #{customerYwId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="useAllNum != null" >
+        use_all_num = #{useAllNum,jdbcType=BIGINT},
+      </if>
+      <if test="useTNum != null" >
+        use_t_num = #{useTNum,jdbcType=BIGINT},
+      </if>
+      <if test="useFNum != null" >
+        use_f_num = #{useFNum,jdbcType=BIGINT},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="inDate != null" >
+        in_date = #{inDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where sn = #{sn,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ming.ssm.model.CustomerBillDayPO" >
+    update customer_bill_day
+    set system_yw_id = #{systemYwId,jdbcType=VARCHAR},
+      customer_yw_id = #{customerYwId,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=VARCHAR},
+      use_all_num = #{useAllNum,jdbcType=BIGINT},
+      use_t_num = #{useTNum,jdbcType=BIGINT},
+      use_f_num = #{useFNum,jdbcType=BIGINT},
+      balance = #{balance,jdbcType=DECIMAL},
+      in_date = #{inDate,jdbcType=TIMESTAMP}
+    where sn = #{sn,jdbcType=BIGINT}
+  </update>
+</mapper>

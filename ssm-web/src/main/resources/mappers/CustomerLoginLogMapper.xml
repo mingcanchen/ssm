@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ming.ssm.persist.dao.CustomerLoginLogMapper" >
+  <resultMap id="BaseResultMap" type="com.ming.ssm.model.CustomerLoginLogPO" >
+    <id column="sn" property="sn" jdbcType="BIGINT" />
+    <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    <result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
+    <result column="login_agent" property="loginAgent" jdbcType="VARCHAR" />
+    <result column="insert_time" property="insertTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sn, customer_id, login_ip, login_agent, insert_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from customer_login_log
+    where sn = #{sn,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from customer_login_log
+    where sn = #{sn,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ming.ssm.model.CustomerLoginLogPO" >
+    insert into customer_login_log (sn, customer_id, login_ip, 
+      login_agent, insert_time)
+    values (#{sn,jdbcType=BIGINT}, #{customerId,jdbcType=VARCHAR}, #{loginIp,jdbcType=VARCHAR}, 
+      #{loginAgent,jdbcType=VARCHAR}, #{insertTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ming.ssm.model.CustomerLoginLogPO" >
+    insert into customer_login_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sn != null" >
+        sn,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="loginIp != null" >
+        login_ip,
+      </if>
+      <if test="loginAgent != null" >
+        login_agent,
+      </if>
+      <if test="insertTime != null" >
+        insert_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sn != null" >
+        #{sn,jdbcType=BIGINT},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="loginIp != null" >
+        #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginAgent != null" >
+        #{loginAgent,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null" >
+        #{insertTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ming.ssm.model.CustomerLoginLogPO" >
+    update customer_login_log
+    <set >
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="loginIp != null" >
+        login_ip = #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginAgent != null" >
+        login_agent = #{loginAgent,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null" >
+        insert_time = #{insertTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sn = #{sn,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ming.ssm.model.CustomerLoginLogPO" >
+    update customer_login_log
+    set customer_id = #{customerId,jdbcType=VARCHAR},
+      login_ip = #{loginIp,jdbcType=VARCHAR},
+      login_agent = #{loginAgent,jdbcType=VARCHAR},
+      insert_time = #{insertTime,jdbcType=VARCHAR}
+    where sn = #{sn,jdbcType=BIGINT}
+  </update>
+</mapper>

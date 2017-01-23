@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ming.ssm.persist.dao.TrackingSmsMapper" >
+  <resultMap id="BaseResultMap" type="com.ming.ssm.model.TrackingSmsPO" >
+    <id column="sn" property="sn" jdbcType="BIGINT" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="sms_type" property="smsType" jdbcType="SMALLINT" />
+    <result column="send_date" property="sendDate" jdbcType="VARCHAR" />
+    <result column="sms_msg" property="smsMsg" jdbcType="VARCHAR" />
+    <result column="result_msg" property="resultMsg" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sn, phone, code, sms_type, send_date, sms_msg, result_msg
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tracking_sms
+    where sn = #{sn,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tracking_sms
+    where sn = #{sn,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ming.ssm.model.TrackingSmsPO" >
+    insert into tracking_sms (sn, phone, code, 
+      sms_type, send_date, sms_msg, 
+      result_msg)
+    values (#{sn,jdbcType=BIGINT}, #{phone,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{smsType,jdbcType=SMALLINT}, #{sendDate,jdbcType=VARCHAR}, #{smsMsg,jdbcType=VARCHAR}, 
+      #{resultMsg,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ming.ssm.model.TrackingSmsPO" >
+    insert into tracking_sms
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sn != null" >
+        sn,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="smsType != null" >
+        sms_type,
+      </if>
+      <if test="sendDate != null" >
+        send_date,
+      </if>
+      <if test="smsMsg != null" >
+        sms_msg,
+      </if>
+      <if test="resultMsg != null" >
+        result_msg,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sn != null" >
+        #{sn,jdbcType=BIGINT},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="smsType != null" >
+        #{smsType,jdbcType=SMALLINT},
+      </if>
+      <if test="sendDate != null" >
+        #{sendDate,jdbcType=VARCHAR},
+      </if>
+      <if test="smsMsg != null" >
+        #{smsMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="resultMsg != null" >
+        #{resultMsg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ming.ssm.model.TrackingSmsPO" >
+    update tracking_sms
+    <set >
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="smsType != null" >
+        sms_type = #{smsType,jdbcType=SMALLINT},
+      </if>
+      <if test="sendDate != null" >
+        send_date = #{sendDate,jdbcType=VARCHAR},
+      </if>
+      <if test="smsMsg != null" >
+        sms_msg = #{smsMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="resultMsg != null" >
+        result_msg = #{resultMsg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sn = #{sn,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ming.ssm.model.TrackingSmsPO" >
+    update tracking_sms
+    set phone = #{phone,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      sms_type = #{smsType,jdbcType=SMALLINT},
+      send_date = #{sendDate,jdbcType=VARCHAR},
+      sms_msg = #{smsMsg,jdbcType=VARCHAR},
+      result_msg = #{resultMsg,jdbcType=VARCHAR}
+    where sn = #{sn,jdbcType=BIGINT}
+  </update>
+</mapper>

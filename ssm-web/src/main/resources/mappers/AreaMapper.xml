@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ming.ssm.persist.dao.AreaMapper" >
+  <resultMap id="BaseResultMap" type="com.ming.ssm.model.AreaPO" >
+    <id column="sn" property="sn" jdbcType="BIGINT" />
+    <result column="area_id" property="areaId" jdbcType="CHAR" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    <result column="en_name" property="enName" jdbcType="VARCHAR" />
+    <result column="short_name" property="shortName" jdbcType="VARCHAR" />
+    <result column="up_area_id" property="upAreaId" jdbcType="CHAR" />
+    <result column="area_level" property="areaLevel" jdbcType="CHAR" />
+    <result column="sort_no" property="sortNo" jdbcType="INTEGER" />
+    <result column="is_city" property="isCity" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sn, area_id, area_name, en_name, short_name, up_area_id, area_level, sort_no, is_city
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from area
+    where sn = #{sn,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from area
+    where sn = #{sn,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ming.ssm.model.AreaPO" >
+    insert into area (sn, area_id, area_name, 
+      en_name, short_name, up_area_id, 
+      area_level, sort_no, is_city
+      )
+    values (#{sn,jdbcType=BIGINT}, #{areaId,jdbcType=CHAR}, #{areaName,jdbcType=VARCHAR}, 
+      #{enName,jdbcType=VARCHAR}, #{shortName,jdbcType=VARCHAR}, #{upAreaId,jdbcType=CHAR}, 
+      #{areaLevel,jdbcType=CHAR}, #{sortNo,jdbcType=INTEGER}, #{isCity,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ming.ssm.model.AreaPO" >
+    insert into area
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sn != null" >
+        sn,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="areaName != null" >
+        area_name,
+      </if>
+      <if test="enName != null" >
+        en_name,
+      </if>
+      <if test="shortName != null" >
+        short_name,
+      </if>
+      <if test="upAreaId != null" >
+        up_area_id,
+      </if>
+      <if test="areaLevel != null" >
+        area_level,
+      </if>
+      <if test="sortNo != null" >
+        sort_no,
+      </if>
+      <if test="isCity != null" >
+        is_city,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sn != null" >
+        #{sn,jdbcType=BIGINT},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=CHAR},
+      </if>
+      <if test="areaName != null" >
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="enName != null" >
+        #{enName,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null" >
+        #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="upAreaId != null" >
+        #{upAreaId,jdbcType=CHAR},
+      </if>
+      <if test="areaLevel != null" >
+        #{areaLevel,jdbcType=CHAR},
+      </if>
+      <if test="sortNo != null" >
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="isCity != null" >
+        #{isCity,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ming.ssm.model.AreaPO" >
+    update area
+    <set >
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=CHAR},
+      </if>
+      <if test="areaName != null" >
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="enName != null" >
+        en_name = #{enName,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null" >
+        short_name = #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="upAreaId != null" >
+        up_area_id = #{upAreaId,jdbcType=CHAR},
+      </if>
+      <if test="areaLevel != null" >
+        area_level = #{areaLevel,jdbcType=CHAR},
+      </if>
+      <if test="sortNo != null" >
+        sort_no = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="isCity != null" >
+        is_city = #{isCity,jdbcType=CHAR},
+      </if>
+    </set>
+    where sn = #{sn,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ming.ssm.model.AreaPO" >
+    update area
+    set area_id = #{areaId,jdbcType=CHAR},
+      area_name = #{areaName,jdbcType=VARCHAR},
+      en_name = #{enName,jdbcType=VARCHAR},
+      short_name = #{shortName,jdbcType=VARCHAR},
+      up_area_id = #{upAreaId,jdbcType=CHAR},
+      area_level = #{areaLevel,jdbcType=CHAR},
+      sort_no = #{sortNo,jdbcType=INTEGER},
+      is_city = #{isCity,jdbcType=CHAR}
+    where sn = #{sn,jdbcType=BIGINT}
+  </update>
+</mapper>

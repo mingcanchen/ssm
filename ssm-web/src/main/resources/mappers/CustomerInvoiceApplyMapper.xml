@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ming.ssm.persist.dao.CustomerInvoiceApplyMapper" >
+  <resultMap id="BaseResultMap" type="com.ming.ssm.model.CustomerInvoiceApplyPO" >
+    <id column="sn" property="sn" jdbcType="BIGINT" />
+    <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    <result column="invoice_date" property="invoiceDate" jdbcType="VARCHAR" />
+    <result column="cost" property="cost" jdbcType="DECIMAL" />
+    <result column="invoice_info" property="invoiceInfo" jdbcType="VARCHAR" />
+    <result column="addr_info" property="addrInfo" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="SMALLINT" />
+    <result column="insert_time" property="insertTime" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sn, customer_id, invoice_date, cost, invoice_info, addr_info, remark, insert_time, 
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from customer_invoice_apply
+    where sn = #{sn,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from customer_invoice_apply
+    where sn = #{sn,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ming.ssm.model.CustomerInvoiceApplyPO" >
+    insert into customer_invoice_apply (sn, customer_id, invoice_date, 
+      cost, invoice_info, addr_info, 
+      remark, insert_time, update_time
+      )
+    values (#{sn,jdbcType=BIGINT}, #{customerId,jdbcType=VARCHAR}, #{invoiceDate,jdbcType=VARCHAR}, 
+      #{cost,jdbcType=DECIMAL}, #{invoiceInfo,jdbcType=VARCHAR}, #{addrInfo,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=SMALLINT}, #{insertTime,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ming.ssm.model.CustomerInvoiceApplyPO" >
+    insert into customer_invoice_apply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sn != null" >
+        sn,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="invoiceDate != null" >
+        invoice_date,
+      </if>
+      <if test="cost != null" >
+        cost,
+      </if>
+      <if test="invoiceInfo != null" >
+        invoice_info,
+      </if>
+      <if test="addrInfo != null" >
+        addr_info,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="insertTime != null" >
+        insert_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sn != null" >
+        #{sn,jdbcType=BIGINT},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceDate != null" >
+        #{invoiceDate,jdbcType=VARCHAR},
+      </if>
+      <if test="cost != null" >
+        #{cost,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceInfo != null" >
+        #{invoiceInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="addrInfo != null" >
+        #{addrInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=SMALLINT},
+      </if>
+      <if test="insertTime != null" >
+        #{insertTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ming.ssm.model.CustomerInvoiceApplyPO" >
+    update customer_invoice_apply
+    <set >
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceDate != null" >
+        invoice_date = #{invoiceDate,jdbcType=VARCHAR},
+      </if>
+      <if test="cost != null" >
+        cost = #{cost,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceInfo != null" >
+        invoice_info = #{invoiceInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="addrInfo != null" >
+        addr_info = #{addrInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=SMALLINT},
+      </if>
+      <if test="insertTime != null" >
+        insert_time = #{insertTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where sn = #{sn,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ming.ssm.model.CustomerInvoiceApplyPO" >
+    update customer_invoice_apply
+    set customer_id = #{customerId,jdbcType=VARCHAR},
+      invoice_date = #{invoiceDate,jdbcType=VARCHAR},
+      cost = #{cost,jdbcType=DECIMAL},
+      invoice_info = #{invoiceInfo,jdbcType=VARCHAR},
+      addr_info = #{addrInfo,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=SMALLINT},
+      insert_time = #{insertTime,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where sn = #{sn,jdbcType=BIGINT}
+  </update>
+</mapper>

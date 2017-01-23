@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ming.ssm.persist.dao.SmsTplMapper" >
+  <resultMap id="BaseResultMap" type="com.ming.ssm.model.SmsTplPO" >
+    <id column="sn" property="sn" jdbcType="BIGINT" />
+    <result column="sms_apply" property="smsApply" jdbcType="SMALLINT" />
+    <result column="sms_name" property="smsName" jdbcType="VARCHAR" />
+    <result column="sms_type" property="smsType" jdbcType="SMALLINT" />
+    <result column="sms_apply_id" property="smsApplyId" jdbcType="VARCHAR" />
+    <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    <result column="sms_msg" property="smsMsg" jdbcType="VARCHAR" />
+    <result column="apply_msg" property="applyMsg" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="SMALLINT" />
+    <result column="insert_time" property="insertTime" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sn, sms_apply, sms_name, sms_type, sms_apply_id, customer_id, sms_msg, apply_msg, 
+    status, insert_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sms_tpl
+    where sn = #{sn,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sms_tpl
+    where sn = #{sn,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ming.ssm.model.SmsTplPO" >
+    insert into sms_tpl (sn, sms_apply, sms_name, 
+      sms_type, sms_apply_id, customer_id, 
+      sms_msg, apply_msg, status, 
+      insert_time, update_time)
+    values (#{sn,jdbcType=BIGINT}, #{smsApply,jdbcType=SMALLINT}, #{smsName,jdbcType=VARCHAR}, 
+      #{smsType,jdbcType=SMALLINT}, #{smsApplyId,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, 
+      #{smsMsg,jdbcType=VARCHAR}, #{applyMsg,jdbcType=VARCHAR}, #{status,jdbcType=SMALLINT}, 
+      #{insertTime,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ming.ssm.model.SmsTplPO" >
+    insert into sms_tpl
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sn != null" >
+        sn,
+      </if>
+      <if test="smsApply != null" >
+        sms_apply,
+      </if>
+      <if test="smsName != null" >
+        sms_name,
+      </if>
+      <if test="smsType != null" >
+        sms_type,
+      </if>
+      <if test="smsApplyId != null" >
+        sms_apply_id,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="smsMsg != null" >
+        sms_msg,
+      </if>
+      <if test="applyMsg != null" >
+        apply_msg,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="insertTime != null" >
+        insert_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sn != null" >
+        #{sn,jdbcType=BIGINT},
+      </if>
+      <if test="smsApply != null" >
+        #{smsApply,jdbcType=SMALLINT},
+      </if>
+      <if test="smsName != null" >
+        #{smsName,jdbcType=VARCHAR},
+      </if>
+      <if test="smsType != null" >
+        #{smsType,jdbcType=SMALLINT},
+      </if>
+      <if test="smsApplyId != null" >
+        #{smsApplyId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="smsMsg != null" >
+        #{smsMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="applyMsg != null" >
+        #{applyMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="insertTime != null" >
+        #{insertTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ming.ssm.model.SmsTplPO" >
+    update sms_tpl
+    <set >
+      <if test="smsApply != null" >
+        sms_apply = #{smsApply,jdbcType=SMALLINT},
+      </if>
+      <if test="smsName != null" >
+        sms_name = #{smsName,jdbcType=VARCHAR},
+      </if>
+      <if test="smsType != null" >
+        sms_type = #{smsType,jdbcType=SMALLINT},
+      </if>
+      <if test="smsApplyId != null" >
+        sms_apply_id = #{smsApplyId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="smsMsg != null" >
+        sms_msg = #{smsMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="applyMsg != null" >
+        apply_msg = #{applyMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="insertTime != null" >
+        insert_time = #{insertTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where sn = #{sn,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ming.ssm.model.SmsTplPO" >
+    update sms_tpl
+    set sms_apply = #{smsApply,jdbcType=SMALLINT},
+      sms_name = #{smsName,jdbcType=VARCHAR},
+      sms_type = #{smsType,jdbcType=SMALLINT},
+      sms_apply_id = #{smsApplyId,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=VARCHAR},
+      sms_msg = #{smsMsg,jdbcType=VARCHAR},
+      apply_msg = #{applyMsg,jdbcType=VARCHAR},
+      status = #{status,jdbcType=SMALLINT},
+      insert_time = #{insertTime,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where sn = #{sn,jdbcType=BIGINT}
+  </update>
+</mapper>

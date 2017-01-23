@@ -57,7 +57,7 @@
 		<property name="dataSource" ref="dataSource" />
 		<!-- 自动扫描mapping.xml文件 -->
 		<property name="typeAliasesPackage" value="com.ming.ssm.model"/>
-		<property name="mapperLocations" value="classpath:mappers/*.xml"/>
+		<!--<property name="mapperLocations" value="classpath:mappers/*.xml"/>-->
 		<property name="configLocation" value="classpath:mybatis-config.xml"/>
 	</bean>
 	<!-- mapperScannerConfigurer 映射含有@Repository的类-->

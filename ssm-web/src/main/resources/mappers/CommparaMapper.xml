@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ming.ssm.persist.dao.CommparaMapper" >
+  <resultMap id="BaseResultMap" type="com.ming.ssm.model.CommparaPO" >
+    <id column="sn" property="sn" jdbcType="BIGINT" />
+    <result column="para_code" property="paraCode" jdbcType="VARCHAR" />
+    <result column="para_name" property="paraName" jdbcType="VARCHAR" />
+    <result column="para_key" property="paraKey" jdbcType="VARCHAR" />
+    <result column="para_value" property="paraValue" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="SMALLINT" />
+    <result column="para_desc" property="paraDesc" jdbcType="VARCHAR" />
+    <result column="sort_no" property="sortNo" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sn, para_code, para_name, para_key, para_value, remark, para_desc, sort_no
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from commpara
+    where sn = #{sn,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from commpara
+    where sn = #{sn,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ming.ssm.model.CommparaPO" >
+    insert into commpara (sn, para_code, para_name, 
+      para_key, para_value, remark, 
+      para_desc, sort_no)
+    values (#{sn,jdbcType=BIGINT}, #{paraCode,jdbcType=VARCHAR}, #{paraName,jdbcType=VARCHAR}, 
+      #{paraKey,jdbcType=VARCHAR}, #{paraValue,jdbcType=VARCHAR}, #{remark,jdbcType=SMALLINT}, 
+      #{paraDesc,jdbcType=VARCHAR}, #{sortNo,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ming.ssm.model.CommparaPO" >
+    insert into commpara
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sn != null" >
+        sn,
+      </if>
+      <if test="paraCode != null" >
+        para_code,
+      </if>
+      <if test="paraName != null" >
+        para_name,
+      </if>
+      <if test="paraKey != null" >
+        para_key,
+      </if>
+      <if test="paraValue != null" >
+        para_value,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="paraDesc != null" >
+        para_desc,
+      </if>
+      <if test="sortNo != null" >
+        sort_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sn != null" >
+        #{sn,jdbcType=BIGINT},
+      </if>
+      <if test="paraCode != null" >
+        #{paraCode,jdbcType=VARCHAR},
+      </if>
+      <if test="paraName != null" >
+        #{paraName,jdbcType=VARCHAR},
+      </if>
+      <if test="paraKey != null" >
+        #{paraKey,jdbcType=VARCHAR},
+      </if>
+      <if test="paraValue != null" >
+        #{paraValue,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=SMALLINT},
+      </if>
+      <if test="paraDesc != null" >
+        #{paraDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null" >
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ming.ssm.model.CommparaPO" >
+    update commpara
+    <set >
+      <if test="paraCode != null" >
+        para_code = #{paraCode,jdbcType=VARCHAR},
+      </if>
+      <if test="paraName != null" >
+        para_name = #{paraName,jdbcType=VARCHAR},
+      </if>
+      <if test="paraKey != null" >
+        para_key = #{paraKey,jdbcType=VARCHAR},
+      </if>
+      <if test="paraValue != null" >
+        para_value = #{paraValue,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=SMALLINT},
+      </if>
+      <if test="paraDesc != null" >
+        para_desc = #{paraDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null" >
+        sort_no = #{sortNo,jdbcType=INTEGER},
+      </if>
+    </set>
+    where sn = #{sn,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ming.ssm.model.CommparaPO" >
+    update commpara
+    set para_code = #{paraCode,jdbcType=VARCHAR},
+      para_name = #{paraName,jdbcType=VARCHAR},
+      para_key = #{paraKey,jdbcType=VARCHAR},
+      para_value = #{paraValue,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=SMALLINT},
+      para_desc = #{paraDesc,jdbcType=VARCHAR},
+      sort_no = #{sortNo,jdbcType=INTEGER}
+    where sn = #{sn,jdbcType=BIGINT}
+  </update>
+</mapper>

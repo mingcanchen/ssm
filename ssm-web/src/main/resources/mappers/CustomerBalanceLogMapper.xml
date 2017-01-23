@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ming.ssm.persist.dao.CustomerBalanceLogMapper" >
+  <resultMap id="BaseResultMap" type="com.ming.ssm.model.CustomerBalanceLogPO" >
+    <id column="sn" property="sn" jdbcType="BIGINT" />
+    <result column="balance_id" property="balanceId" jdbcType="VARCHAR" />
+    <result column="balance_type" property="balanceType" jdbcType="SMALLINT" />
+    <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    <result column="balance" property="balance" jdbcType="DECIMAL" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="pay_id" property="payId" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="SMALLINT" />
+    <result column="pay_status" property="payStatus" jdbcType="SMALLINT" />
+    <result column="pay_type" property="payType" jdbcType="SMALLINT" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="insert_time" property="insertTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sn, balance_id, balance_type, customer_id, balance, remark, pay_id, status, pay_status, 
+    pay_type, update_time, insert_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from customer_balance_log
+    where sn = #{sn,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from customer_balance_log
+    where sn = #{sn,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ming.ssm.model.CustomerBalanceLogPO" >
+    insert into customer_balance_log (sn, balance_id, balance_type, 
+      customer_id, balance, remark, 
+      pay_id, status, pay_status, 
+      pay_type, update_time, insert_time
+      )
+    values (#{sn,jdbcType=BIGINT}, #{balanceId,jdbcType=VARCHAR}, #{balanceType,jdbcType=SMALLINT}, 
+      #{customerId,jdbcType=VARCHAR}, #{balance,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR}, 
+      #{payId,jdbcType=VARCHAR}, #{status,jdbcType=SMALLINT}, #{payStatus,jdbcType=SMALLINT}, 
+      #{payType,jdbcType=SMALLINT}, #{updateTime,jdbcType=TIMESTAMP}, #{insertTime,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ming.ssm.model.CustomerBalanceLogPO" >
+    insert into customer_balance_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sn != null" >
+        sn,
+      </if>
+      <if test="balanceId != null" >
+        balance_id,
+      </if>
+      <if test="balanceType != null" >
+        balance_type,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="payId != null" >
+        pay_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="payStatus != null" >
+        pay_status,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="insertTime != null" >
+        insert_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sn != null" >
+        #{sn,jdbcType=BIGINT},
+      </if>
+      <if test="balanceId != null" >
+        #{balanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="balanceType != null" >
+        #{balanceType,jdbcType=SMALLINT},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="payId != null" >
+        #{payId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="payStatus != null" >
+        #{payStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=SMALLINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insertTime != null" >
+        #{insertTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ming.ssm.model.CustomerBalanceLogPO" >
+    update customer_balance_log
+    <set >
+      <if test="balanceId != null" >
+        balance_id = #{balanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="balanceType != null" >
+        balance_type = #{balanceType,jdbcType=SMALLINT},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="payId != null" >
+        pay_id = #{payId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="payStatus != null" >
+        pay_status = #{payStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="payType != null" >
+        pay_type = #{payType,jdbcType=SMALLINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insertTime != null" >
+        insert_time = #{insertTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sn = #{sn,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ming.ssm.model.CustomerBalanceLogPO" >
+    update customer_balance_log
+    set balance_id = #{balanceId,jdbcType=VARCHAR},
+      balance_type = #{balanceType,jdbcType=SMALLINT},
+      customer_id = #{customerId,jdbcType=VARCHAR},
+      balance = #{balance,jdbcType=DECIMAL},
+      remark = #{remark,jdbcType=VARCHAR},
+      pay_id = #{payId,jdbcType=VARCHAR},
+      status = #{status,jdbcType=SMALLINT},
+      pay_status = #{payStatus,jdbcType=SMALLINT},
+      pay_type = #{payType,jdbcType=SMALLINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      insert_time = #{insertTime,jdbcType=VARCHAR}
+    where sn = #{sn,jdbcType=BIGINT}
+  </update>
+</mapper>

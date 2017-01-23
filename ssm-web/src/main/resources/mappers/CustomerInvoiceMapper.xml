@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ming.ssm.persist.dao.CustomerInvoiceMapper" >
+  <resultMap id="BaseResultMap" type="com.ming.ssm.model.CustomerInvoicePO" >
+    <id column="sn" property="sn" jdbcType="BIGINT" />
+    <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    <result column="tax_num" property="taxNum" jdbcType="VARCHAR" />
+    <result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+    <result column="bank_num" property="bankNum" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="bus_lic_url" property="busLicUrl" jdbcType="VARCHAR" />
+    <result column="cust_lic_url" property="custLicUrl" jdbcType="VARCHAR" />
+    <result column="other_lic_url" property="otherLicUrl" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="SMALLINT" />
+    <result column="insert_time" property="insertTime" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sn, customer_id, tax_num, bank_name, bank_num, mobile, address, bus_lic_url, cust_lic_url, 
+    other_lic_url, remark, status, insert_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from customer_invoice
+    where sn = #{sn,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from customer_invoice
+    where sn = #{sn,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ming.ssm.model.CustomerInvoicePO" >
+    insert into customer_invoice (sn, customer_id, tax_num, 
+      bank_name, bank_num, mobile, 
+      address, bus_lic_url, cust_lic_url, 
+      other_lic_url, remark, status, 
+      insert_time, update_time)
+    values (#{sn,jdbcType=BIGINT}, #{customerId,jdbcType=VARCHAR}, #{taxNum,jdbcType=VARCHAR}, 
+      #{bankName,jdbcType=VARCHAR}, #{bankNum,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{busLicUrl,jdbcType=VARCHAR}, #{custLicUrl,jdbcType=VARCHAR}, 
+      #{otherLicUrl,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{status,jdbcType=SMALLINT}, 
+      #{insertTime,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ming.ssm.model.CustomerInvoicePO" >
+    insert into customer_invoice
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sn != null" >
+        sn,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="taxNum != null" >
+        tax_num,
+      </if>
+      <if test="bankName != null" >
+        bank_name,
+      </if>
+      <if test="bankNum != null" >
+        bank_num,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="busLicUrl != null" >
+        bus_lic_url,
+      </if>
+      <if test="custLicUrl != null" >
+        cust_lic_url,
+      </if>
+      <if test="otherLicUrl != null" >
+        other_lic_url,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="insertTime != null" >
+        insert_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sn != null" >
+        #{sn,jdbcType=BIGINT},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="taxNum != null" >
+        #{taxNum,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankNum != null" >
+        #{bankNum,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="busLicUrl != null" >
+        #{busLicUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="custLicUrl != null" >
+        #{custLicUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="otherLicUrl != null" >
+        #{otherLicUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="insertTime != null" >
+        #{insertTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ming.ssm.model.CustomerInvoicePO" >
+    update customer_invoice
+    <set >
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="taxNum != null" >
+        tax_num = #{taxNum,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankNum != null" >
+        bank_num = #{bankNum,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="busLicUrl != null" >
+        bus_lic_url = #{busLicUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="custLicUrl != null" >
+        cust_lic_url = #{custLicUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="otherLicUrl != null" >
+        other_lic_url = #{otherLicUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="insertTime != null" >
+        insert_time = #{insertTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where sn = #{sn,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ming.ssm.model.CustomerInvoicePO" >
+    update customer_invoice
+    set customer_id = #{customerId,jdbcType=VARCHAR},
+      tax_num = #{taxNum,jdbcType=VARCHAR},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      bank_num = #{bankNum,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      bus_lic_url = #{busLicUrl,jdbcType=VARCHAR},
+      cust_lic_url = #{custLicUrl,jdbcType=VARCHAR},
+      other_lic_url = #{otherLicUrl,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      status = #{status,jdbcType=SMALLINT},
+      insert_time = #{insertTime,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where sn = #{sn,jdbcType=BIGINT}
+  </update>
+</mapper>

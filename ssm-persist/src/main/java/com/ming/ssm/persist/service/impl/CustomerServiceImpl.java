@@ -34,5 +34,10 @@ public class CustomerServiceImpl implements ICustomerService {
         return customerMapper.addCustomer(customerPO);
     }
 
+    @Override
+    public CustomerPO getCustomerDetail(String customerId) {
+        return customerMapper.getCustomeiDetail(customerId);
+    }
+
 
 }

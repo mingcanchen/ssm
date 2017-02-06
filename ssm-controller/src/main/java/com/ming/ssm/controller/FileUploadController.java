@@ -48,7 +48,7 @@ public class FileUploadController {
                     String originalFilename = file.getOriginalFilename();
                     //判断文件名是否为""
                     if (!StringUtils.isEmpty(originalFilename)) {
-                        String fileName = "upload111" + originalFilename;
+                        String fileName = "upload" + originalFilename;
                         String path = "D:/" + fileName;
                         File localFile = new File(path);
                         file.transferTo(localFile);

@@ -9,7 +9,13 @@
 <html>
 <head>
     <title>geek park</title>
-    <div style="font-size: larger;color: coral">welcome to geek park!</div>
+    <div align="center">
+        <h6 style="font-size: larger;color: coral;align-content: center">welcome to geek park!</h6>
+    </div>
+    <div><a href="highchartsDemo.jsp">highChartsDemo</a></div>
+    <div><a href="layerDemo.jsp">layerDemo</a></div>
+    <div><a href="angularjs.jsp">angularjs</a></div>
+    <div><a href="fileUpload.jsp">fileUpload</a></div>
 
 </head>
 <body>

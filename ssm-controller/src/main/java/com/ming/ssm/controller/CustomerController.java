@@ -3,9 +3,12 @@ package com.ming.ssm.controller;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.ming.ssm.framework.User;
+import com.ming.ssm.framework.UserService;
 import com.ming.ssm.model.CustomerPO;
 import com.ming.ssm.model.CustomerVO;
 import com.ming.ssm.persist.service.ICustomerService;
+import org.apache.thrift.TException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -13,6 +16,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -27,6 +31,9 @@ public class CustomerController {
 
     @Resource
     private ICustomerService customerServiceImpl;
+
+    @Resource
+    private UserService.Iface userService;
 
     private final static Logger LOGGER = LoggerFactory.getLogger(CustomerController.class);
 
@@ -78,5 +85,23 @@ public class CustomerController {
         CustomerPO customerPO = customerServiceImpl.getCustomerDetail(customerId);
         LOGGER.info("测试用户详情:"+JSON.toJSONString(customerPO));
         return "" ;
+    }
+
+    @RequestMapping(value = "test")
+    @ResponseBody
+    public ModelMap testJson(ModelMap modelMap){
+        modelMap.put("code", "2000");
+        modelMap.put("message", "请求成功");
+        return modelMap;
+    }
+
+    @RequestMapping(value = "getUser")
+    public  String getUser (){
+        try {
+            userService.store1(new User(888, "tom" , "haha" ) );
+        } catch (TException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

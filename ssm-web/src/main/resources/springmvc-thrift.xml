@@ -3,19 +3,35 @@
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
 	   default-autowire="byName">
-	<!--   ======================bank 银行=======================  -->
-	<!-- 积分报表 -->
+
 	<bean id="userService"  class="com.ming.ssm.framework.thrift.proxy.DynamicClientProxyFactory"  factory-method="createIface" scope="prototype">
 		<constructor-arg>
 			<value>com.ming.ssm.framework.UserService</value>
 		</constructor-arg>
 		<constructor-arg>
-			<value>${thrift.order.host}</value>
+			<value>${thrift.ming.host}</value>
 		</constructor-arg>
 		<constructor-arg>
 			<value>UserService</value>
 		</constructor-arg>
 	</bean>
+
+	<!--<bean id="userService1"  class="com.ming.ssm.framework.thrift.proxy.DynamicClientProxyFactory"  factory-method="createIface" scope="prototype">
+		<constructor-arg index="0">
+			<value>com.ming.thrift.UserService</value>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<value>${thrift.ming.host}</value>
+		</constructor-arg>
+		<constructor-arg index="2">
+			<value>UserService</value>
+		</constructor-arg>
+		<constructor-arg index="3">
+			<map>
+				<entry key="createInstance" value="120000"/>
+			</map>
+		</constructor-arg>
+	</bean>-->
 
 	<!--<bean id="fallowExecuteService"  class="com.ming.ssm.framework.thrift.proxy.DynamicClientProxyFactory"  factory-method="createIface" scope="prototype">
 		<constructor-arg index="0">

@@ -12,6 +12,27 @@
 	<!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
 	<context:component-scan base-package="com.ming.ssm" />
 	<mvc:annotation-driven/>
+
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="fileEncoding" value="UTF-8" />
+		<property name="locations">
+			<list>
+				<value>classpath*:/*.properties</value>
+				<value>file:/ming/config/*.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="properties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="locations">
+			<list>
+				<value>classpath*:/*.properties</value>
+				<value>file:/ming/config/*.properties</value>
+			</list>
+		</property>
+		<qualifier value="main"/>
+	</bean>
+
 	<!--避免IE执行AJAX时，返回JSON出现下载文件 -->
 	<bean id="mappingJacksonHttpMessageConverter"
 		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
@@ -66,4 +87,5 @@
 	</bean>
 	<mvc:default-servlet-handler/>
 	<import resource="springmvc-thrift.xml"/>
+
 </beans> 

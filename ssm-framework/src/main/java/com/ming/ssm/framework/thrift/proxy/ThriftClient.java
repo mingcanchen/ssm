@@ -1,7 +1,6 @@
 package com.ming.ssm.framework.thrift.proxy;
 
 import org.apache.thrift.protocol.TBinaryProtocol;
-import org.apache.thrift.protocol.TCompactProtocol;
 import org.apache.thrift.protocol.TMultiplexedProtocol;
 import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.transport.TSocket;
@@ -62,15 +61,12 @@ public class ThriftClient {
 		this.port = port;
 		this.srvName = srvName;
 
-        
-        transport = new TSocket(ip, port,timeout); 
-        transport.open(); 
-        
-        // 设置传输协议为 TBinaryProtocol 
-        protocol = new TBinaryProtocol(transport); 
-        multiProtocol = new TMultiplexedProtocol(protocol, srvName);
-        
-//        TProtocol protocol = new TCompactProtocol(transport);
+        transport = new TSocket(ip, port,timeout);
+
+		// 设置传输协议为 TBinaryProtocol
+		protocol = new TBinaryProtocol(transport);
+		multiProtocol = new TMultiplexedProtocol(protocol, srvName);
+		transport.open();
 	}
 	
 	
@@ -82,8 +78,6 @@ public class ThriftClient {
 	public void close() {
 		if (transport != null) {
 			transport.close();
-			
-			transport = null;
 			transport = null;
 			multiProtocol = null;
 		}

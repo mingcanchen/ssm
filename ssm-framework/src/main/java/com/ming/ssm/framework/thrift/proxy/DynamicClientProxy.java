@@ -53,7 +53,7 @@ public class DynamicClientProxy<T> implements InvocationHandler {
 		TSocket tsocket = null;
 		ThriftClient thrift = null;
 		try {
-//			tsocket = new TSocket(host.split(":")[0], Integer.parseInt(host.split(":")[1]), 10000); 
+//			tsocket = new TSocket(host.split(":")[0], Integer.parseInt(host.split(":")[1]), 10000);
 			
 			thrift = new ThriftClient();
 			

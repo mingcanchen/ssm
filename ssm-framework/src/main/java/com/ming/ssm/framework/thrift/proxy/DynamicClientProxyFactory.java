@@ -15,10 +15,11 @@ public class DynamicClientProxyFactory {
 	public static Object createIface(String clazzIfaceName, String host, String serverName) {
 
 		try {
-			int idx = clazzIfaceName.lastIndexOf('$');
+			//int idx = clazzIfaceName.lastIndexOf('$');
 
-            String clazzClientName = clazzIfaceName.substring(0, idx) + "$Client";
-			//String clazzClientName = clazzIfaceName + "$Client";
+           // String clazzClientName = clazzIfaceName.substring(0, idx) + "$Client";
+
+			String clazzClientName = clazzIfaceName + "$Client";
 			
 			Class clientClazz = Class.forName(clazzClientName);
 			
@@ -39,10 +40,10 @@ public class DynamicClientProxyFactory {
 	public static Object createIface(String clazzIfaceName, String host, String serverName, Map<String,String> methodNames) {
 
 		try {
-            int idx = clazzIfaceName.lastIndexOf('$');
+//            int idx = clazzIfaceName.lastIndexOf('$');
 
-            String clazzClientName = clazzIfaceName.substring(0, idx) + "$Client";
-//			String clazzClientName = clazzIfaceName + "$Client";
+//            String clazzClientName = clazzIfaceName.substring(0, idx) + "$Client";
+			String clazzClientName = clazzIfaceName + "$Client";
 
 			Class clientClazz = Class.forName(clazzClientName);
 			

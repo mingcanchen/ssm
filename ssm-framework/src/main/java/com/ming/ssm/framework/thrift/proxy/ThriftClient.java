@@ -62,11 +62,11 @@ public class ThriftClient {
 		this.srvName = srvName;
 
         transport = new TSocket(ip, port,timeout);
+		transport.open();
 
 		// 设置传输协议为 TBinaryProtocol
 		protocol = new TBinaryProtocol(transport);
 		multiProtocol = new TMultiplexedProtocol(protocol, srvName);
-		transport.open();
 	}
 	
 	

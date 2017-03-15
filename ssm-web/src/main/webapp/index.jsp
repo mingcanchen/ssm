@@ -19,9 +19,9 @@
     <div><a href="fileUpload.jsp">fileUpload</a></div>
     <script style="text/javascript">
 
-        $(function(){
-            alert("11111");
-        })
+//        $(function(){
+//            alert("11111");
+//        })
     </script>
 </head>
 <body>

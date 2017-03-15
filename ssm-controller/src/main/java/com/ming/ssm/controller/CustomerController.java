@@ -3,11 +3,12 @@ package com.ming.ssm.controller;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.ming.ssm.framework.thrift.proxy.DynamicClientProxyFactory;
 import com.ming.ssm.model.CustomerPO;
 import com.ming.ssm.model.CustomerVO;
 import com.ming.ssm.persist.service.ICustomerService;
-import com.ming.thrift.User;
-import com.ming.thrift.UserService;
+import com.ming.thrift.service.User;
+import com.ming.thrift.service.UserService;
 import org.apache.thrift.TException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -97,6 +98,8 @@ public class CustomerController {
 
     @RequestMapping(value = "getUser")
     public  String getUser (){
+        UserService.Iface userService = (UserService.Iface) DynamicClientProxyFactory.createIface("com.ming.thrift.service.UserService", "192.168.62.224:9090", "UserService");
+        System.out.println(userService);
         try {
             userService.store1(new User(888, "tom" , "haha" ) );
         } catch (TException e) {

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+   <!-- <div ng-app>
+        Your name: <input type="text" ng-model="yourname" ng-init="firstName='John'" placeholder=""><br>
+        Hello1 {{yourname}}!<br>
+        Hello2 <span ng-bind="yourname"></span>!<br>
+        <p>你的名字:<span ng-bind="firstName"></span></p>
+        <p>{{firstName}}1111</p>
+        全名: {{firstName + yourname}}
+    </div>-->
+    <!--<div data-ng-app="" data-ng-init="firstName1='John-chan'">
+
+        <p>姓名为 <span data-ng-bind="firstName1"></span></p>
+        速度:{{5+5}}m/s
+
+    </div>-->
+<div ng-app="myApp" ng-controller="myCtrl" ng-init="cost=4;quantity=5;person={firstName:'John',lastName:'Doe'}" >
+
+    姓: <input type="text" ng-model="firstName"><br>
+    名: <input type="text" ng-model="lastName"><br>
+    姓名:{{firstName+" "+lastName}}<br>
+    总价:{{cost * quantity}}<br>
+    第一姓名:{{person.firstName}}<br>
+    第二姓名:<span ng-bind="person.lastName"></span>
+</div>
+</body>
+
+<!--提高页面加载速度-->
+<script src="js/angular.min.js"></script>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope) {
+        $scope.firstName= "John";
+        $scope.lastName= "Doe";
+    });
+</script>
+</html>

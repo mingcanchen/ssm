@@ -15,7 +15,7 @@
     </div>
     <div><a href="highchartsDemo.jsp">highChartsDemo</a></div>
     <div><a href="layerDemo.jsp">layerDemo</a></div>
-    <div><a href="angularjs.jsp">angularjs</a></div>
+    <div><a href="angularjs.html">angularjs</a></div>
     <div><a href="fileUpload.jsp">fileUpload</a></div>
     <script style="text/javascript">
 
